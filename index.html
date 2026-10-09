@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#146b4a">
+  <meta name="description" content="Baterías de laptop importadas desde EE. UU. con recogida local en Cuba. Envío rápido y seguro.">
+  <title>Cuban Fashioner — Baterías para laptop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <div class="announcement"><span class="announcement-dot"></span> Envío rápido y seguro <span class="announcement-separator">·</span> Recogida local en Cuba</div>
+
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Cuban Fashioner, inicio">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M12 4h8v3h4a3 3 0 0 1 3 3v15a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V10a3 3 0 0 1 3-3h4V4Zm2 3h4V6h-4v1Zm-2 6v3h-3v3h3v3h3v-3h3v-3h-3v-3h-3Z"/></svg></span>
+      <span class="brand-copy"><strong>Cuban <span>Fashioner</span></strong><small>Repuestos que te mueven</small></span>
+    </a>
+    <nav class="header-actions" aria-label="Navegación principal">
+      <button class="button button-quiet account-button" id="account-button" type="button"><span class="button-icon">♙</span><span id="account-label">Iniciar sesión</span></button>
+      <button class="button button-cart" id="cart-button" type="button" aria-label="Abrir carrito">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 8H7M10 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm7 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/></svg>
+        <span>Carrito</span><span class="cart-count" id="cart-count">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow"><span class="eyebrow-line"></span> ENERGÍA PARA SEGUIR</div>
+        <h1>Tu laptop siempre<br><span>lista para todo.</span></h1>
+        <p>Baterías originales y compatibles, importadas desde EE. UU. y listas para recoger en Cuba.</p>
+        <a class="button button-primary hero-cta" href="#catalogo">Explorar baterías <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+        <div class="hero-battery"><div class="battery-cap"></div><div class="battery-charge"></div><span>100%</span></div>
+        <div class="hero-chip chip-one">✦ Calidad garantizada</div><div class="hero-chip chip-two">✈ Desde EE. UU.</div>
+        <div class="hero-spark spark-one">✳</div><div class="hero-spark spark-two">✦</div>
+      </div>
+      <div class="hero-foot"><span>COMPRA CON CONFIANZA</span><span class="hero-foot-line"></span><span>CALIDAD · SEGURIDAD · RAPIDEZ</span></div>
+    </section>
+
+    <section class="catalog-section section-wrap" id="catalogo">
+      <div class="section-heading">
+        <div><div class="eyebrow"><span class="eyebrow-line"></span> CATÁLOGO</div><h2>Encuentra tu batería</h2><p class="section-subtitle">Compatibilidad y rendimiento para acompañarte cada día.</p></div>
+        <div class="catalog-tools">
+          <label class="search-box" for="search-input"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg><input id="search-input" type="search" placeholder="Modelo de tu batería" autocomplete="off"><kbd>⌕</kbd></label>
+          <label class="filter-select"><span class="sr-only">Filtrar disponibilidad</span><select id="availability-filter"><option value="all">Todos</option><option value="available">En stock</option><option value="unavailable">Agotados</option></select></label>
+        </div>
+      </div>
+      <div class="catalog-meta"><span id="result-count">0 productos</span><span class="catalog-note"><span class="status-dot"></span> Stock actualizado</span></div>
+      <div class="product-grid" id="product-grid" aria-live="polite"></div>
+      <div class="empty-state hidden" id="empty-state"><span class="empty-icon">⌕</span><h3>No encontramos esa batería</h3><p>Prueba con otra marca o modelo.</p><button class="button button-outline" id="clear-search" type="button">Ver todo el catálogo</button></div>
+    </section>
+
+    <section class="promise-strip">
+      <div class="promise-item"><span class="promise-icon">✈</span><div><strong>Importadas desde EE. UU.</strong><small>Calidad seleccionada para ti</small></div></div>
+      <div class="promise-item"><span class="promise-icon">⌖</span><div><strong>Recogida local</strong><small>Fácil y conveniente en Cuba</small></div></div>
+      <div class="promise-item"><span class="promise-icon">✓</span><div><strong>Compra con confianza</strong><small>Te acompañamos en el proceso</small></div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a class="footer-brand" href="#">Cuban Fashioner<span>®</span></a><span>Envío rápido y seguro.</span><span>© <span id="current-year"></span> Cuban Fashioner</span></footer>
+
+  <div class="modal-backdrop hidden" id="modal-backdrop"></div>
+  <section class="modal hidden" id="product-modal" role="dialog" aria-modal="true" aria-labelledby="product-modal-title"></section>
+  <section class="modal auth-modal hidden" id="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-title"></section>
+  <section class="modal order-modal hidden" id="order-modal" role="dialog" aria-modal="true" aria-labelledby="order-title"></section>
+
+  <aside class="drawer hidden" id="cart-drawer" aria-label="Carrito de compras" aria-modal="true" role="dialog">
+    <div class="drawer-heading"><div><div class="eyebrow">TU SELECCIÓN</div><h2>Mi carrito <span id="drawer-count"></span></h2></div><button class="icon-button" data-close type="button" aria-label="Cerrar carrito">×</button></div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-empty hidden" id="cart-empty"><span>◌</span><strong>Tu carrito está vacío</strong><p>Encuentra la batería ideal para tu laptop.</p><button class="button button-outline" data-close type="button">Explorar catálogo</button></div>
+    <div class="cart-summary hidden" id="cart-summary"><div class="total-row"><span>Total estimado</span><strong id="cart-total"></strong></div><p>El pago y la coordinación de recogida se confirman contigo.</p><button class="button button-primary checkout-button" id="checkout-button" type="button">Confirmar pedido <span>→</span></button></div>
+  </aside>
+
+  <main class="admin-page hidden" id="admin-page">
+    <div class="admin-topbar"><button class="button button-quiet" id="back-to-store" type="button">← Volver a la tienda</button><span class="admin-badge">♛ Administración</span><button class="button button-quiet" id="admin-logout" type="button">Cerrar sesión</button></div>
+    <section class="admin-content">
+      <div class="admin-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> PANEL DE CONTROL</div><h1>Gestiona tu catálogo</h1><p>Los cambios se reflejan en la tienda al instante.</p></div><div class="admin-stat"><span>PRODUCTOS</span><strong id="admin-product-count">0</strong></div></div>
+      <div class="admin-columns">
+        <form class="admin-form" id="product-form">
+          <div class="form-heading"><div><span class="form-kicker">CATÁLOGO</span><h2 id="form-title">Agregar producto</h2></div><button class="text-button hidden" id="cancel-edit" type="button">Cancelar edición</button></div>
+          <input type="hidden" id="product-id">
+          <label for="product-name">Modelo de batería <span>*</span></label><input id="product-name" name="name" required maxlength="80" placeholder="Ej. HP HS04">
+          <label for="product-brand">Marca <span>*</span></label><input id="product-brand" name="brand" required maxlength="50" placeholder="Ej. HP">
+          <label for="product-image">URL de imagen</label><input id="product-image" name="image" type="url" placeholder="https://...">
+          <label for="product-specs">Especificaciones y compatibilidad <span>*</span></label><textarea id="product-specs" name="specs" required maxlength="500" rows="3" placeholder="Capacidad, voltaje y modelos compatibles"></textarea>
+          <label for="product-price">Precio (USD) <span>*</span></label><input id="product-price" name="price" type="number" min="0.01" step="0.01" required placeholder="35.00">
+          <label class="checkbox-row"><input id="product-stock" type="checkbox" checked><span>Disponible en stock</span></label>
+          <button class="button button-primary full-button" id="save-product" type="submit">Agregar al catálogo <span>＋</span></button>
+        </form>
+        <div class="admin-inventory"><div class="inventory-heading"><div><span class="form-kicker">INVENTARIO ACTUAL</span><h2>Productos</h2></div><span id="inventory-count" class="inventory-count">0 productos</span></div><div id="admin-product-list" class="admin-product-list"></div></div>
+      </div>
+      <section class="orders-section"><div class="inventory-heading"><div><span class="form-kicker">ACTIVIDAD</span><h2>Pedidos recibidos</h2></div><span class="inventory-count" id="orders-count">0 pedidos</span></div><div id="admin-orders" class="admin-orders"></div></section>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
