@@ -139,11 +139,6 @@ export const Backend = {
       total: order.total
     });
     if (error) throw error;
-  },
-  async isAdmin() {
-    const { data, error } = await supabase.rpc("is_admin");
-    if (error) throw error;
-    return data === true;
   }
 };
 

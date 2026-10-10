@@ -80,6 +80,10 @@ function refreshAdmin() {
   });
 }
 
+function isAdminAccount(user) {
+  return user.email?.trim().toLowerCase() === ADMIN_EMAIL;
+}
+
 function setPageMode(admin) {
   document.body.classList.toggle("admin-mode", admin);
   document.querySelector("body > .announcement").classList.toggle("hidden", admin);
@@ -587,7 +591,7 @@ authModal.addEventListener("submit", async event => {
       return;
     }
     if (!result.data.user) throw new Error("El servicio no devolvió una cuenta autenticada.");
-    const isAdmin = await Backend.isAdmin();
+    const isAdmin = isAdminAccount(result.data.user);
     if (adminLogin && !isAdmin) {
       await supabase.auth.signOut();
       notify("Esta cuenta no tiene acceso al panel de administración.");
@@ -700,7 +704,7 @@ async function applyAuthenticatedUser(user) {
     setPageMode(false);
     return;
   }
-  const isAdmin = await Backend.isAdmin();
+  const isAdmin = isAdminAccount(user);
   customer = {
     userId: user.id,
     name: user.user_metadata?.name || user.email,

@@ -19,7 +19,7 @@ Después abre `http://localhost:8000`. Sin configurar Supabase se muestra un cat
 3. En **Project Settings → API**, copia la URL del proyecto y la clave pública `anon`/`publishable` en `js/supabase-config.js`.
 4. **No copies la clave `service_role` al sitio, al repositorio ni al navegador.** La URL y la clave pública están diseñadas para estar en el cliente; las políticas RLS son las que limitan los datos.
 5. En Supabase Auth, habilita el proveedor de correo y la confirmación de correo. En la configuración de URL, añade el dominio de GitHub Pages del sitio a las URL de redirección permitidas.
-6. Registra la cuenta administradora con el correo configurado en `supabase/schema.sql` y confirma el correo. La función `is_admin()` y las políticas RLS autorizan esa cuenta verificada; las demás cuentas solo pueden iniciar sesión, hacer pedidos propios y no pueden administrar productos ni leer pedidos.
+6. Registra la cuenta administradora con el correo configurado en `supabase/schema.sql` y confirma el correo. La tienda identifica qué usuario autenticado debe ver el panel comparando su correo; las políticas RLS y la función `is_admin()` de Supabase siguen siendo la autorización efectiva para administrar productos y leer pedidos. Las demás cuentas solo pueden iniciar sesión y hacer sus propios pedidos.
 7. Publica el proyecto en GitHub Pages. Al actualizar los datos de `js/supabase-config.js`, publica de nuevo el sitio.
 
 Las contraseñas se envían al servicio Supabase Auth por HTTPS y no se incluyen en el código ni se guardan en `localStorage`. Los clientes pueden registrarse con correo; el carrito y la preferencia de tema permanecen locales al dispositivo. Catálogo y pedidos se comparten mediante Supabase.
