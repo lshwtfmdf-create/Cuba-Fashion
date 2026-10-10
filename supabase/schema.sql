@@ -70,6 +70,22 @@ grant insert, update, delete on public.products to authenticated;
 grant insert on public.orders to authenticated;
 grant select on public.orders to authenticated;
 
+insert into storage.buckets (id, name, public)
+values ('products', 'products', true)
+on conflict (id) do update set public = excluded.public;
+
+drop policy if exists "Product images are publicly readable" on storage.objects;
+create policy "Product images are publicly readable"
+on storage.objects for select
+to anon, authenticated
+using (bucket_id = 'products');
+
+drop policy if exists "Admins upload product images" on storage.objects;
+create policy "Admins upload product images"
+on storage.objects for insert
+to authenticated
+with check (bucket_id = 'products' and (select public.is_admin()));
+
 insert into public.products (id, name, brand, image, specs, price, stock) values
   ('hp-hs04', 'Batería HP HS04', 'HP', 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=800&q=80', 'Batería de ion-litio de 14.8 V y 2600 mAh. Compatible con HP 240 G4, 245 G4, 250 G4, 255 G4 y modelos de la serie HP 14/15.', 32.50, true),
   ('dell-inspiron-15', 'Batería Dell Inspiron 15', 'Dell', 'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=800&q=80', 'Batería de reemplazo de 14.8 V y 40 Wh. Compatible con Dell Inspiron 15 3000 Series, 3451, 3452, 3551 y modelos compatibles.', 38, true),

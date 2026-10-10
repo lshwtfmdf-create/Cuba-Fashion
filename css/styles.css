@@ -201,6 +201,7 @@ h1, h2, h3, p { margin-top: 0; }
 .admin-form, .admin-inventory, .orders-section { padding: 21px; border: 1px solid #e9ede9; border-radius: 11px; background: white; }
 .form-heading,.inventory-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }.form-heading h2,.inventory-heading h2 { margin: 4px 0 0; font: 700 15px "Manrope",sans-serif; }.text-button { border: 0; color: var(--green-700); background: none; font-size: 9px; }
 .admin-form > label:not(.checkbox-row) span { color: var(--red); }.admin-form textarea { resize: vertical; min-height: 72px; }.checkbox-row { margin: 14px 0; display: flex; align-items: center; gap: 8px; color: #5f6c62; font-size: 10px; }.checkbox-row input { accent-color: var(--green-700); }.full-button { width: 100%; }
+.admin-form .field-hint { display: block; margin-top: 6px; color: var(--muted); font-size: 9px; line-height: 1.5; }
 .inventory-count { color: #87928a; font-size: 9px; }.admin-product-list { display: grid; gap: 8px; }.admin-product-row { min-height: 70px; padding: 9px; display: grid; grid-template-columns: 49px minmax(0,1fr) auto; align-items: center; gap: 10px; border: 1px solid #eef1ee; border-radius: 8px; }.admin-product-row img { width: 49px; height: 49px; object-fit: cover; border-radius: 5px; background: #f4f6f3; }.admin-product-text { min-width: 0; }.admin-product-text strong { display: block; overflow: hidden; font: 700 10px "Manrope",sans-serif; text-overflow: ellipsis; white-space: nowrap; }.admin-product-text small { display: block; margin-top: 4px; color: #818c84; font-size: 9px; }.admin-row-actions { display: flex; align-items: center; gap: 5px; }.admin-row-actions button { padding: 6px 7px; border: 1px solid #e6ebe6; border-radius: 5px; color: #637168; background: white; font-size: 9px; }.admin-row-actions button:hover { border-color: #9ebba4; }.admin-row-actions .delete-product { color: #a15852; }.admin-stock { font-size: 8px; font-weight: 700; }.admin-stock.available { color: #438252; }.admin-stock.unavailable { color: #aa6d65; }
 .admin-orders { display: grid; gap: 8px; }.orders-section { margin-top: 17px; }.order-row { padding: 12px; border: 1px solid #eef1ee; border-radius: 8px; }.order-row-top { display: flex; justify-content: space-between; gap: 10px; }.order-row strong { font: 700 10px "Manrope",sans-serif; }.order-row small,.order-row p { color: #849087; font-size: 9px; }.order-row p { margin: 7px 0 0; }
 .admin-empty { padding: 23px 10px; color: #8b958e; text-align: center; font-size: 10px; }
@@ -289,6 +290,7 @@ body.dark-mode .hero-content p, body.dark-mode .promise-item small,
 body.dark-mode .empty-state p, body.dark-mode .search-box input::placeholder,
 body.dark-mode .admin-form input::placeholder,
 body.dark-mode .admin-form textarea::placeholder { color: #a4b2a8; }
+body.dark-mode .admin-form .field-hint { color: #a4b2a8; }
 body.dark-mode .auth-divider::before, body.dark-mode .auth-divider::after { background: #34463a; }
 body.dark-mode .auth-mode-switch button { color: #b4c0b7; }
 body.dark-mode .auth-mode-switch button.active { color: #d8e4db; background: #2b3b30; }

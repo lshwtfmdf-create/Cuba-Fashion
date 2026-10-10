@@ -15,7 +15,7 @@ Después abre `http://localhost:8000`. Sin configurar Supabase se muestra un cat
 ## Configurar Supabase
 
 1. Crea un proyecto en Supabase.
-2. En **SQL Editor**, ejecuta el contenido de [`supabase/schema.sql`](./supabase/schema.sql). Crea las tablas con Row Level Security, sus políticas de acceso y los productos iniciales.
+2. En **SQL Editor**, ejecuta el contenido de [`supabase/schema.sql`](./supabase/schema.sql). Crea las tablas con Row Level Security, el bucket público `products` y sus políticas de acceso, además de los productos iniciales.
 3. En **Project Settings → API**, copia la URL del proyecto y la clave pública `anon`/`publishable` en `js/supabase-config.js`.
 4. **No copies la clave `service_role` al sitio, al repositorio ni al navegador.** La URL y la clave pública están diseñadas para estar en el cliente; las políticas RLS son las que limitan los datos.
 5. En Supabase Auth, habilita el proveedor de correo y la confirmación de correo. En la configuración de URL, añade el dominio de GitHub Pages del sitio a las URL de redirección permitidas.

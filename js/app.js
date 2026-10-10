@@ -442,7 +442,6 @@ function beginEdit(productId) {
   $("#product-id").value = product.id;
   $("#product-name").value = product.name;
   $("#product-brand").value = product.brand;
-  $("#product-image").value = product.image || "";
   $("#product-specs").value = product.specs;
   $("#product-price").value = product.price;
   $("#product-stock").checked = product.stock;
@@ -620,11 +619,13 @@ authModal.addEventListener("submit", async event => {
 $("#product-form").addEventListener("submit", async event => {
   event.preventDefault();
   const id = $("#product-id").value;
+  const imageFile = $("#product-image").files[0];
+  const existingProduct = id ? products.find(item => item.id === id) : null;
   const product = {
     id: id || `product-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
     name: $("#product-name").value.trim(),
     brand: $("#product-brand").value.trim(),
-    image: $("#product-image").value.trim() || FALLBACK_IMAGE,
+    image: existingProduct?.image || FALLBACK_IMAGE,
     specs: $("#product-specs").value.trim(),
     price: Number($("#product-price").value),
     stock: $("#product-stock").checked
@@ -633,7 +634,24 @@ $("#product-form").addEventListener("submit", async event => {
     notify("Completa los campos requeridos con datos válidos");
     return;
   }
+  if (imageFile && !imageFile.type.startsWith("image/")) {
+    notify("Selecciona un archivo de imagen válido.");
+    return;
+  }
+  const saveButton = $("#save-product");
+  saveButton.disabled = true;
   try {
+    if (imageFile) {
+      const safeFileName = imageFile.name.replace(/[^\w.-]/g, "_");
+      const imagePath = `products/${Date.now()}_${Math.random().toString(36).slice(2)}_${safeFileName}`;
+      const { error: uploadError } = await supabase.storage.from("products").upload(imagePath, imageFile, {
+        cacheControl: "3600",
+        contentType: imageFile.type,
+        upsert: false
+      });
+      if (uploadError) throw uploadError;
+      product.image = supabase.storage.from("products").getPublicUrl(imagePath).data.publicUrl;
+    }
     const savedProduct = await Backend.saveProduct(product);
     if (id) products = products.map(item => item.id === id ? savedProduct : item);
     else products = [savedProduct, ...products];
@@ -642,7 +660,10 @@ $("#product-form").addEventListener("submit", async event => {
     renderProducts();
     notify(id ? "Producto actualizado" : "Producto agregado al catálogo");
   } catch (error) {
-    notify(error.message);
+    console.error("No se pudo guardar el producto o subir su imagen.", error);
+    notify(error.message || "No se pudo guardar el producto. Inténtalo de nuevo.");
+  } finally {
+    saveButton.disabled = false;
   }
 });
 $("#cancel-edit").addEventListener("click", resetProductForm);

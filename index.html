@@ -94,7 +94,7 @@
           <input type="hidden" id="product-id">
           <label for="product-name">Modelo de batería <span>*</span></label><input id="product-name" name="name" required maxlength="80" placeholder="Ej. HP HS04">
           <label for="product-brand">Marca <span>*</span></label><input id="product-brand" name="brand" required maxlength="50" placeholder="Ej. HP">
-          <label for="product-image">URL de imagen</label><input id="product-image" name="image" type="url" placeholder="https://...">
+          <label for="product-image">Imagen del producto</label><input id="product-image" name="image" type="file" accept="image/*" aria-describedby="product-image-hint"><small class="field-hint" id="product-image-hint">Opcional. En el teléfono puedes elegir una imagen o tomar una foto. Al editar, déjalo vacío para conservar la imagen actual.</small>
           <label for="product-specs">Especificaciones y compatibilidad <span>*</span></label><textarea id="product-specs" name="specs" required maxlength="500" rows="3" placeholder="Capacidad, voltaje y modelos compatibles"></textarea>
           <label for="product-price">Precio (USD) <span>*</span></label><input id="product-price" name="price" type="number" min="0.01" step="0.01" required placeholder="35.00">
           <label class="checkbox-row"><input id="product-stock" type="checkbox" checked><span>Disponible en stock</span></label>
