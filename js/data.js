@@ -1,8 +1,9 @@
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { SUPABASE_URL, SUPABASE_ANON_KEY } from "./supabase-config.js";
+
 const STORAGE_KEYS = {
-  products: "cuban-fashioner-products",
   cart: "cuban-fashioner-cart",
-  customer: "cuban-fashioner-customer",
-  orders: "cuban-fashioner-orders"
+  theme: "cuban-fashioner-theme"
 };
 
 const starterProducts = [
@@ -99,15 +100,56 @@ function writeStored(key, value) {
   }
 }
 
-export const Store = {
-  getProducts() {
-    const stored = readStored(STORAGE_KEYS.products, null);
-    if (Array.isArray(stored)) return stored;
-    writeStored(STORAGE_KEYS.products, starterProducts);
-    return starterProducts.map(product => ({ ...product }));
+export const supabaseConfigured = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY);
+export const supabase = supabaseConfigured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+export const Backend = {
+  async getProducts() {
+    const { data, error } = await supabase.from("products").select("*").order("brand").order("name");
+    if (error) throw error;
+    return data;
   },
-  saveProducts(products) {
-    writeStored(STORAGE_KEYS.products, products);
+  async saveProduct(product) {
+    const { data, error } = await supabase.from("products").upsert(product).select().single();
+    if (error) throw error;
+    return data;
+  },
+  async deleteProduct(id) {
+    const { error } = await supabase.from("products").delete().eq("id", id);
+    if (error) throw error;
+  },
+  async getOrders() {
+    const { data, error } = await supabase.from("orders").select("*").order("created_at", { ascending: false });
+    if (error) throw error;
+    return data.map(order => ({
+      id: order.id,
+      date: order.created_at,
+      customer: { name: order.customer_name, contact: order.customer_contact },
+      products: order.products,
+      total: Number(order.total)
+    }));
+  },
+  async saveOrder(order, userId) {
+    const { error } = await supabase.from("orders").insert({
+      id: order.id,
+      user_id: userId,
+      customer_name: order.customer.name,
+      customer_contact: order.customer.contact,
+      products: order.products,
+      total: order.total
+    });
+    if (error) throw error;
+  },
+  async isAdmin() {
+    const { data, error } = await supabase.rpc("is_admin");
+    if (error) throw error;
+    return data === true;
+  }
+};
+
+export const Store = {
+  getDemoProducts() {
+    return starterProducts.map(product => ({ ...product }));
   },
   getCart() {
     const cart = readStored(STORAGE_KEYS.cart, []);
@@ -116,20 +158,11 @@ export const Store = {
   saveCart(cart) {
     writeStored(STORAGE_KEYS.cart, cart);
   },
-  getCustomer() {
-    return readStored(STORAGE_KEYS.customer, null);
+  getTheme() {
+    const theme = readStored(STORAGE_KEYS.theme, "light");
+    return theme === "dark" ? "dark" : "light";
   },
-  saveCustomer(customer) {
-    writeStored(STORAGE_KEYS.customer, customer);
-  },
-  clearCustomer() {
-    localStorage.removeItem(STORAGE_KEYS.customer);
-  },
-  getOrders() {
-    const orders = readStored(STORAGE_KEYS.orders, []);
-    return Array.isArray(orders) ? orders : [];
-  },
-  saveOrders(orders) {
-    writeStored(STORAGE_KEYS.orders, orders);
+  saveTheme(theme) {
+    writeStored(STORAGE_KEYS.theme, theme);
   }
 };

@@ -1,29 +1,36 @@
 # Cuban Fashioner
 
-Tienda de demostración para catálogo de baterías de laptop, carrito y recogida local en Cuba. Está implementada con HTML, CSS y JavaScript nativo, sin dependencias ni servidor.
+Tienda de baterías para laptop implementada con HTML, CSS y JavaScript nativo. GitHub Pages publica los archivos estáticos; Supabase proporciona autenticación y almacenamiento compartido.
 
-## Cómo ejecutar
+## Ejecutar localmente
 
-Abre `index.html` en un navegador moderno. Si el navegador bloquea módulos JavaScript al abrir archivos locales, inicia un servidor estático desde la carpeta del proyecto, por ejemplo:
+Abre `index.html` en un navegador moderno o inicia un servidor estático desde la carpeta del proyecto:
 
 ```sh
 python -m http.server 8000
 ```
 
-Después abre `http://localhost:8000`.
+Después abre `http://localhost:8000`. Sin configurar Supabase se muestra un catálogo de demostración de solo lectura; el inicio de sesión, los pedidos y la administración quedan deshabilitados.
 
-## Funciones incluidas
+## Configurar Supabase
 
-- Catálogo adaptable con búsqueda por modelo, marca o especificaciones y filtro de disponibilidad.
-- Detalle de producto en modal y carrito con cantidades, subtotales y total.
-- Registro/inicio de sesión de demostración para clientes por nombre y correo/teléfono.
-- Confirmación de pedido con resumen JSON, opción de copiarlo o abrir WhatsApp con el mensaje preparado para `+53 50727220`, e historial local visible para el administrador.
-- Panel con alta, edición, eliminación y actualización de disponibilidad del inventario.
-- Persistencia local del catálogo, sesión de demostración, carrito y pedidos con `localStorage`.
+1. Crea un proyecto en Supabase.
+2. En **SQL Editor**, ejecuta el contenido de [`supabase/schema.sql`](./supabase/schema.sql). Crea las tablas con Row Level Security, sus políticas de acceso y los productos iniciales.
+3. En **Project Settings → API**, copia la URL del proyecto y la clave pública `anon`/`publishable` en `js/supabase-config.js`.
+4. **No copies la clave `service_role` al sitio, al repositorio ni al navegador.** La URL y la clave pública están diseñadas para estar en el cliente; las políticas RLS son las que limitan los datos.
+5. En Supabase Auth, habilita el proveedor de correo y la confirmación de correo. En la configuración de URL, añade el dominio de GitHub Pages del sitio a las URL de redirección permitidas.
+6. Registra la cuenta administradora con el correo configurado en `supabase/schema.sql` y confirma el correo. La función `is_admin()` y las políticas RLS autorizan esa cuenta verificada; las demás cuentas solo pueden iniciar sesión, hacer pedidos propios y no pueden administrar productos ni leer pedidos.
+7. Publica el proyecto en GitHub Pages. Al actualizar los datos de `js/supabase-config.js`, publica de nuevo el sitio.
 
-## Acceso de demostración
+Las contraseñas se envían al servicio Supabase Auth por HTTPS y no se incluyen en el código ni se guardan en `localStorage`. Los clientes pueden registrarse con correo; el carrito y la preferencia de tema permanecen locales al dispositivo. Catálogo y pedidos se comparten mediante Supabase.
 
-- **Administrador:** `admin@cuban-fashioner.com`
-- **Contraseña:** `Cuba2026!`
+## Funciones
 
-La autenticación no es segura para producción: las credenciales y los datos se procesan en el navegador. `localStorage` es local al dispositivo y no sincroniza con otros usuarios. Para un lanzamiento real, sustituye esta simulación por un backend con autenticación, base de datos, autorización y procesamiento de pedidos seguros.
+- Catálogo adaptable con búsqueda, filtro de disponibilidad y detalle de productos.
+- Carrito, cantidades, totales y confirmación de pedido por WhatsApp.
+- Registro e inicio de sesión de clientes mediante Supabase Auth.
+- Panel de administración para gestionar productos y consultar pedidos.
+- Permisos de base de datos: catálogo de lectura pública, cambios de productos y lectura de pedidos reservados a la cuenta administradora.
+- Modo oscuro/claro y carrito guardados localmente.
+
+La tienda necesita Supabase configurado y las políticas SQL aplicadas antes de habilitar autenticación o administración en producción.

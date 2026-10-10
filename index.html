@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#146b4a">
   <meta name="description" content="Baterías de laptop importadas desde EE. UU. con recogida local en Cuba. Envío rápido y seguro.">
   <title>Cuban Fashioner — Baterías para laptop</title>
+  <link rel="icon" type="image/png" href="assets/cuban-fashioner-logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -17,10 +18,11 @@
 
   <header class="site-header">
     <a class="brand" href="#" aria-label="Cuban Fashioner, inicio">
-      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M12 4h8v3h4a3 3 0 0 1 3 3v15a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V10a3 3 0 0 1 3-3h4V4Zm2 3h4V6h-4v1Zm-2 6v3h-3v3h3v3h3v-3h3v-3h-3v-3h-3Z"/></svg></span>
+      <span class="brand-mark"><img src="assets/cuban-fashioner-logo.png" alt=""></span>
       <span class="brand-copy"><strong>Cuban <span>Fashioner</span></strong><small>Repuestos que te mueven</small></span>
     </a>
     <nav class="header-actions" aria-label="Navegación principal">
+      <button class="button button-quiet theme-toggle" id="theme-toggle" data-theme-toggle type="button" aria-label="Activar modo oscuro" aria-pressed="false"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Modo oscuro</span></button>
       <button class="button button-quiet account-button" id="account-button" type="button"><span class="button-icon">♙</span><span id="account-label">Iniciar sesión</span></button>
       <button class="button button-cart" id="cart-button" type="button" aria-label="Abrir carrito">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.1a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 8H7M10 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm7 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/></svg>
@@ -55,7 +57,8 @@
         </div>
       </div>
       <div class="catalog-meta"><span id="result-count">0 productos</span><span class="catalog-note"><span class="status-dot"></span> Stock actualizado</span></div>
-      <div class="product-grid" id="product-grid" aria-live="polite"></div>
+      <div class="brand-list-heading" id="brand-list-heading"><h3>Marcas</h3><span>Selecciona una marca para ver sus modelos</span></div>
+      <div class="brand-sections" id="product-grid" aria-live="polite"></div>
       <div class="empty-state hidden" id="empty-state"><span class="empty-icon">⌕</span><h3>No encontramos esa batería</h3><p>Prueba con otra marca o modelo.</p><button class="button button-outline" id="clear-search" type="button">Ver todo el catálogo</button></div>
     </section>
 
@@ -66,22 +69,23 @@
     </section>
   </main>
 
-  <footer class="site-footer"><a class="footer-brand" href="#">Cuban Fashioner<span>®</span></a><span>Envío rápido y seguro.</span><span>© <span id="current-year"></span> Cuban Fashioner</span></footer>
+  <footer class="site-footer"><a class="footer-brand" href="#"><img src="assets/cuban-fashioner-logo.png" alt="">Cuban Fashioner<span>®</span></a><span>Envío rápido y seguro.</span><span>© <span id="current-year"></span> Cuban Fashioner</span></footer>
 
   <div class="modal-backdrop hidden" id="modal-backdrop"></div>
+  <section class="modal brand-modal hidden" id="brand-modal" role="dialog" aria-modal="true" aria-labelledby="brand-modal-title"></section>
   <section class="modal hidden" id="product-modal" role="dialog" aria-modal="true" aria-labelledby="product-modal-title"></section>
   <section class="modal auth-modal hidden" id="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-title"></section>
   <section class="modal order-modal hidden" id="order-modal" role="dialog" aria-modal="true" aria-labelledby="order-title"></section>
 
   <aside class="drawer hidden" id="cart-drawer" aria-label="Carrito de compras" aria-modal="true" role="dialog">
-    <div class="drawer-heading"><div><div class="eyebrow">TU SELECCIÓN</div><h2>Mi carrito <span id="drawer-count"></span></h2></div><button class="icon-button" data-close type="button" aria-label="Cerrar carrito">×</button></div>
+    <div class="drawer-heading"><div><div class="drawer-brand"><img src="assets/cuban-fashioner-logo.png" alt="">CUBAN FASHIONER</div><div class="eyebrow">TU SELECCIÓN</div><h2>Mi carrito <span id="drawer-count"></span></h2></div><button class="icon-button" data-close type="button" aria-label="Cerrar carrito">×</button></div>
     <div class="cart-items" id="cart-items"></div>
     <div class="cart-empty hidden" id="cart-empty"><span>◌</span><strong>Tu carrito está vacío</strong><p>Encuentra la batería ideal para tu laptop.</p><button class="button button-outline" data-close type="button">Explorar catálogo</button></div>
     <div class="cart-summary hidden" id="cart-summary"><div class="total-row"><span>Total estimado</span><strong id="cart-total"></strong></div><p>El pago y la coordinación de recogida se confirman contigo.</p><button class="button button-primary checkout-button" id="checkout-button" type="button">Confirmar pedido <span>→</span></button></div>
   </aside>
 
   <main class="admin-page hidden" id="admin-page">
-    <div class="admin-topbar"><button class="button button-quiet" id="back-to-store" type="button">← Volver a la tienda</button><span class="admin-badge">♛ Administración</span><button class="button button-quiet" id="admin-logout" type="button">Cerrar sesión</button></div>
+    <div class="admin-topbar"><button class="button button-quiet" id="back-to-store" type="button">← Volver a la tienda</button><span class="admin-badge"><img src="assets/cuban-fashioner-logo.png" alt=""> Administración</span><button class="button button-quiet theme-toggle" id="admin-theme-toggle" data-theme-toggle type="button" aria-label="Activar modo oscuro" aria-pressed="false"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Modo oscuro</span></button><button class="button button-quiet" id="admin-logout" type="button">Cerrar sesión</button></div>
     <section class="admin-content">
       <div class="admin-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> PANEL DE CONTROL</div><h1>Gestiona tu catálogo</h1><p>Los cambios se reflejan en la tienda al instante.</p></div><div class="admin-stat"><span>PRODUCTOS</span><strong id="admin-product-count">0</strong></div></div>
       <div class="admin-columns">
