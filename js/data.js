@@ -9,12 +9,12 @@ const STORAGE_KEYS = {
 const starterProducts = [
   {
     id: "hp-hs04",
-    name: "Batería HP HS04",
+    name: "Batería HP JC04 / HS04",
     brand: "HP",
-    price: 32.5,
+    price: 30,
     stock: true,
     image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=800&q=80",
-    specs: "Batería de ion-litio de 14.8 V y 2600 mAh. Compatible con HP 240 G4, 245 G4, 250 G4, 255 G4 y modelos de la serie HP 14/15."
+    specs: "Batería Li-ion nueva e importada, 14.8 V, 2200 mAh / 33 Wh. Compatible con HP 14, HP 15, HP Pavilion 240 G6 y 250 G6. Precio sugerido: 30 USD; opción de pago en CUP disponible."
   },
   {
     id: "dell-inspiron-15",
@@ -56,10 +56,10 @@ const starterProducts = [
     id: "hp-pavilion-ht03xl",
     name: "Batería HP HT03XL",
     brand: "HP",
-    price: 44.9,
+    price: 40,
     stock: true,
     image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=80",
-    specs: "Batería de 11.55 V y 41.9 Wh. Compatible con HP Pavilion 14-ce, 15-cs, 15-da y modelos que utilizan batería HT03XL."
+    specs: "Batería Li-ion nueva, 11.55 V, 3470 mAh / 41.9 Wh. Compatible con HP Pavilion 14-CE, 15-CS, 15-DA, 15-DB y 250 G7."
   },
   {
     id: "dell-latitude-e5470",
@@ -78,6 +78,60 @@ const starterProducts = [
     stock: true,
     image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80",
     specs: "Batería externa de 11.4 V y 24 Wh. Compatible con Lenovo ThinkPad T470, T480, A475 y modelos seleccionados."
+  },
+  {
+    id: "lenovo-l15m2pb1-l16m3pb1",
+    name: "Batería Lenovo L15M2PB1 / L16M3PB1",
+    brand: "Lenovo",
+    price: 45,
+    stock: true,
+    image: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=80",
+    specs: "Batería Li-ion nueva, 7.5 V / 7.6 V, 4000 mAh / 30-35 Wh. Compatible con Lenovo IdeaPad 320, 330, 520 y V320."
+  },
+  {
+    id: "lenovo-l11s6y01",
+    name: "Batería Lenovo L11S6Y01",
+    brand: "Lenovo",
+    price: 25,
+    stock: true,
+    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80",
+    specs: "Batería Li-ion nueva, 10.8 V, 4400 mAh / 48 Wh. Compatible con Lenovo G480, G580, Y480, Z580 y ThinkPad Edge E430."
+  },
+  {
+    id: "dell-yrdd6",
+    name: "Batería Dell YRDD6",
+    brand: "Dell",
+    price: 35,
+    stock: true,
+    image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=800&q=80",
+    specs: "Batería Li-ion nueva, 11.4 V / 42 Wh. Compatible con Dell Inspiron 14 5480, 15 5584, 15 3593 y Vostro 5481."
+  },
+  {
+    id: "dell-wdx0r",
+    name: "Batería Dell WDX0R",
+    brand: "Dell",
+    price: 38,
+    stock: true,
+    image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=800&q=80",
+    specs: "Batería Li-ion nueva, 11.4 V, 3500 mAh / 42 Wh. Compatible con Dell Inspiron 13 5368, 15 5567, 15 5570 y 17 5770."
+  },
+  {
+    id: "asus-a41-x550a",
+    name: "Batería ASUS A41-X550A",
+    brand: "ASUS",
+    price: 30,
+    stock: true,
+    image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=800&q=80",
+    specs: "Batería Li-ion nueva, 14.4 V, 2600 mAh / 37 Wh. Compatible con ASUS X450, X550, A550, K550 y R510."
+  },
+  {
+    id: "acer-as10d31-ac14b18k",
+    name: "Batería Acer AS10D31 / AC14B18K",
+    brand: "Acer",
+    price: 32,
+    stock: true,
+    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80",
+    specs: "Batería Li-ion nueva, 10.8 V / 11.4 V, 4400 mAh / 48 Wh. Compatible con Acer Aspire E1, V3, E5-571, E5-573 y ES1."
   }
 ];
 
