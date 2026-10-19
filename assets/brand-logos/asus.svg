@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <rect width="120" height="120" rx="18" fill="#fff"/>
+  <path d="M20 70 53 38h49L69 70H49l21-20H61L40 70z" fill="#111"/>
+  <text x="60" y="91" fill="#111" font-family="Arial,sans-serif" font-size="18" font-weight="700" text-anchor="middle">ASUS</text>
+</svg>
